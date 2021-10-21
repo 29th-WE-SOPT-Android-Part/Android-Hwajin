@@ -11,4 +11,5 @@
     <!-- Main Color -->
     <color name="pink">#FF6781</color>
     <color name="gray">#D3D3D3</color>
+    <color name="orange">#FFA500</color>
 </resources>
