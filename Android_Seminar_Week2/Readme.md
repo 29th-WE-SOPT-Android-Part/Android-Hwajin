@@ -120,6 +120,13 @@ class RepositoryFragment : Fragment() {
 <br>
 
 ### 3. 배운 내용
+* Fragment Transaction
+  * Activity에서 Fragment를 추가, 교체, 삭제 작업을 수행하기 위해 사용
+  * FragmentManager 클래스에 구현되어 있음
+  * 수행한 트랜잭션의 상태를 백스택(BackStack)에 저장 가능
+  * Fragment 전환 애니메이션 설정 가능
+<br>
+
 * ellipsize
   * Text가 TextView를 넘어갔을 때 표시할 방법
   * start : 앞부분을 ...으로 표시
