@@ -4,6 +4,6 @@
         android:drawable="@drawable/rectangle_border_pink"
         android:state_focused="true" />
     <item
-        android:drawable="@drawable/rectangle_fill_gray"
+        android:drawable="@drawable/rectangle_fill_border_gray"
         android:state_focused="false" />
 </selector>
