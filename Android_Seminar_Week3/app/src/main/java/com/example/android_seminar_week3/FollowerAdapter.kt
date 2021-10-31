@@ -11,7 +11,7 @@ class FollowerAdapter : RecyclerView.Adapter<FollowerAdapter.FollowerViewHolder>
 
     class FollowerViewHolder(private val binding: ItemFollowerBinding) : RecyclerView.ViewHolder(binding.root){
         fun onBind(data : FollowerData){
-            Glide.with(binding.root).load(data.img).into(binding.ivProfile)
+            Glide.with(binding.root).load(data.img).circleCrop().into(binding.ivProfile)
             binding.tvName.text = data.name
             binding.tvIntroduce.text = data.introduction
         }

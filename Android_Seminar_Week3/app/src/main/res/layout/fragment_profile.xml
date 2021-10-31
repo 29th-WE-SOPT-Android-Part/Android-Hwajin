@@ -12,7 +12,8 @@
         android:background="@color/pink"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        tools:context=".ProfileFragment">
 
         <ImageView
             android:id="@+id/iv_profile"
@@ -111,7 +112,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layout_marginStart="7dp"
-            android:background="@drawable/selector_login_btn"
+            android:background="@drawable/selector_list_btn"
             android:text="레포지토리 목록"
             android:textColor="@color/black" />
     </LinearLayout>
