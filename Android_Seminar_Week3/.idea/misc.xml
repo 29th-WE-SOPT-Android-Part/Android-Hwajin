@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/ic_img_github.xml" value="0.25729166666666664" />
         <entry key="app/src/main/res/drawable/rectangle_border_pink.xml" value="0.25729166666666664" />
         <entry key="app/src/main/res/drawable/rectangle_fill_gray.xml" value="0.25729166666666664" />
         <entry key="app/src/main/res/drawable/rectangle_fill_orange.xml" value="0.25729166666666664" />
@@ -13,6 +14,7 @@
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.2572463768115942" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.24427083333333333" />
         <entry key="app/src/main/res/layout/activity_sign_in.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_sign_up.xml" value="0.2957384330428524" />
       </map>
     </option>
   </component>
