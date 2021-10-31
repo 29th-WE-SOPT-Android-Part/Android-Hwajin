@@ -9,7 +9,8 @@
     <color name="white">#FFFFFFFF</color>
 
     <!-- Main Color -->
-    <color name="pink">#FF6781</color>
+    <color name="pink">#F658A6</color>
+    <color name="light_gray">#F2F2F2</color>
     <color name="gray">#D3D3D3</color>
-    <color name="orange">#FFA500</color>
+    <color name="orange">#FAB24C</color>
 </resources>
