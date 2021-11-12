@@ -17,8 +17,6 @@ class HomeActivity : AppCompatActivity() {
 
         setContentView(binding.root)
 
-        Toast.makeText(this, "정화진님 환영합니다", Toast.LENGTH_SHORT).show()
-
     }
 
     private fun initTransactionEvent(){
