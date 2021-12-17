@@ -62,6 +62,7 @@ class SignInActivity : AppCompatActivity() {
                 if(response.isSuccessful){
                     shortToast("${response.body()?.data?.email}님 반갑습니다.")
                     startActivity(Intent(this@SignInActivity, MainActivity::class.java))
+                    finish()
                 }else{
                     shortToast("로그인에 실패하였습니다.")
                 }
@@ -77,7 +78,6 @@ class SignInActivity : AppCompatActivity() {
         binding.tvSignUp.setOnClickListener {
             val intent = Intent(this, SignUpActivity::class.java)
             startActivity(intent)
-            finish()
         }
     }
 
