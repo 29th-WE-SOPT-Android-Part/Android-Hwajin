@@ -177,4 +177,173 @@ private fun initNetWork(){
 ```
 <br>
 
+# 7주차 
 
+### 1. 실행 화면
+
+
+https://user-images.githubusercontent.com/61824695/146559943-2b63e740-6bd2-4bf0-9473-18338103a0b6.mp4
+
+
+<br>
+
+### 2. 구현한 코드
+* 네비게이션 - xml
+```xml
+    <?xml version="1.0" encoding="utf-8"?>
+    <navigation xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/nav_onboarding"
+        app:startDestination="@id/onBoardingFragment1">
+
+        <fragment
+            android:id="@+id/onBoardingFragment1"
+            android:name="com.example.android_seminar_week4.ui.onboarding.OnBoardingFragment1"
+            android:label="fragment_on_boarding1"
+            tools:layout="@layout/fragment_on_boarding1" >
+            <action
+                android:id="@+id/action_onBoardingFragment1_to_onBoardingFragment2"
+                app:destination="@id/onBoardingFragment2" />
+        </fragment>
+        <fragment
+            android:id="@+id/onBoardingFragment2"
+            android:name="com.example.android_seminar_week4.ui.onboarding.OnBoardingFragment2"
+            android:label="fragment_on_boarding2"
+            tools:layout="@layout/fragment_on_boarding2" >
+            <action
+                android:id="@+id/action_onBoardingFragment2_to_onBoardingFragment3"
+                app:destination="@id/onBoardingFragment3" />
+        </fragment>
+        <fragment
+            android:id="@+id/onBoardingFragment3"
+            android:name="com.example.android_seminar_week4.ui.onboarding.OnBoardingFragment3"
+            android:label="fragment_on_boarding3"
+            tools:layout="@layout/fragment_on_boarding3" />
+    </navigation>
+```
+<br>
+
+* 네비게이션 - class
+```kotlin
+    class OnBoardingFragment1 : Fragment() {
+        private var _binding: FragmentOnBoarding1Binding? = null
+        private val binding get() = _binding ?: error("Binding이 초기화되지 않았습니다.")
+
+        override fun onCreateView(
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?
+        ): View? {
+            _binding = FragmentOnBoarding1Binding.inflate(layoutInflater, container, false)
+
+            initNextBtnListener()
+
+            return binding.root
+        }
+
+        private fun initNextBtnListener(){
+            binding.btnNext.setOnClickListener {
+                findNavController().navigate(R.id.action_onBoardingFragment1_to_onBoardingFragment2)
+            }
+        }
+
+        override fun onDestroyView() {
+            super.onDestroyView()
+            _binding = null
+        }
+    }
+```
+<br>
+
+* SharedPreference
+```kotlin
+package org.sopt.myapplication.util
+
+import android.content.Context
+
+object SoptSharedPreference {
+
+    private const val STORAGE_KEY = "USER_AUTH"
+    private const val AUTO_LOGIN = "AUTO_LOGIN"
+
+    fun getAutoLogin(context: Context) : Boolean {
+        val preferences = context.getSharedPreferences(STORAGE_KEY, Context.MODE_PRIVATE)
+        return preferences.getBoolean(AUTO_LOGIN, false)
+    }
+
+    fun setAutoLogin(context: Context, value : Boolean) {
+        val preferences = context.getSharedPreferences(STORAGE_KEY, Context.MODE_PRIVATE)
+        preferences.edit()
+            .putBoolean(AUTO_LOGIN, value)
+            .apply()
+    }
+
+    fun removeAutoLogin(context: Context) {
+        val preferences = context.getSharedPreferences(STORAGE_KEY, Context.MODE_PRIVATE)
+        preferences.edit()
+            .remove(AUTO_LOGIN)
+            .apply()
+    }
+
+    fun clearStorage(context: Context) {
+        val preferences = context.getSharedPreferences(STORAGE_KEY, Context.MODE_PRIVATE)
+        preferences.edit()
+            .clear()
+            .apply()
+    }
+}
+```
+```kotlin
+    private fun isAutoLogin(){
+            if(SoptSharedPreference.getAutoLogin(this)){
+                shortToast("자동로그인 완료")
+                startActivity(Intent(this@SignInActivity, MainActivity::class.java))
+                finish()
+            }
+    }
+```
+<br>
+
+* Util
+```kotlin
+    fun Context.shortToast(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+    }
+
+    @Px
+    fun View.px(dp: Int) = (dp * resources.displayMetrics.density).roundToInt()
+```
+<br>
+
+* 패키징
+<div>
+<img src="https://user-images.githubusercontent.com/61824695/146558733-afc58d1d-8c83-4664-9b26-a753e942ab3e.png" width="50%">
+</div>
+크게 data, ui, util로 나누었습니다. ui에는 화면별로 분류하였고, data는 request와 response를 분리하였습니다.
+<br>
+
+### 3. 배운 내용
+* Util 클래스
+  * 일종의 인스턴스에 대해 작고 반복적인 작업을 수행하는 정적 클래스
+  * 자주 사용하는 함수들을 static하게 선언해서 모든 클래스에서 접근할 수 있게 모아둔 클래스
+<br>
+
+* 확장 함수
+  * 기존 클래스에 매소드를 추가
+  * 간단한 기능을 추가하고 싶을 때 사용
+<br>
+
+* NavigationComponent
+  * 하나의 Activity내에서 Fragment간의 전환을 보다 심플하고 안정적으로 할 수 있게 도와주는 Jetpact Component
+  * NavHostFragment가 Fragment 대상의 교체를 관리
+  * 유연한 Action 관리
+  * 보일러 플레이트 코드 완화  
+<br>
+
+* 영속성 데이터
+  * 데이터를 생성한 애플리케이션의 실행이 종료되더라도 사라지지 않는 데이터
+* SharedPreferences
+  * 간단한 데이터를 key-value형식으로 저장할 수 있게 해주는 로컬 저장소
+  * 기본 자료형의 읽기, 쓰기 지원
+  * 애플리케이션 내부에서만 접근 가능
+  * 비교적 간단한 데이터 저장에 용이   
