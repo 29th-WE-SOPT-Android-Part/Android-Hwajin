@@ -13,10 +13,10 @@
         android:theme="@style/Theme.Android_Seminar_Week4"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".SettingActivity"
+            android:name=".ui.home.SettingActivity"
             android:exported="true" />
         <activity
-            android:name=".OnBoardingActivity"
+            android:name=".ui.onboarding.OnBoardingActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,16 +25,16 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.MainActivity"
             android:exported="true" />
         <activity
-            android:name=".HomeActivity"
+            android:name=".ui.home.HomeActivity"
             android:exported="true" />
         <activity
-            android:name=".SignUpActivity"
+            android:name=".ui.user.SignUpActivity"
             android:exported="true" />
         <activity
-            android:name=".SignInActivity"
+            android:name=".ui.user.SignInActivity"
             android:exported="true" />
     </application>
 
