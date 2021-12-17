@@ -10,6 +10,7 @@ import com.example.android_seminar_week4.data.service.ServiceCreator
 import com.example.android_seminar_week4.data.request.RequestLoginData
 import com.example.android_seminar_week4.data.response.ResponseLoginData
 import com.example.android_seminar_week4.databinding.ActivitySignInBinding
+import com.example.android_seminar_week4.util.shortToast
 import org.sopt.myapplication.util.SoptSharedPreference
 import retrofit2.Call
 import retrofit2.Callback
@@ -34,7 +35,7 @@ class SignInActivity : AppCompatActivity() {
             val id = binding.etId.text
             val pw = binding.etPw.text
             if(id.isEmpty() || pw.isEmpty()) {
-                Toast.makeText(this, "아이디와 비밀번호를 모두 입력해주세요.", Toast.LENGTH_SHORT).show()
+                shortToast("아이디와 비밀번호를 모두 입력해주세요.")
             }else{
                 initNetWork()
             }
@@ -59,13 +60,10 @@ class SignInActivity : AppCompatActivity() {
                 response: Response<ResponseLoginData>
             ){
                 if(response.isSuccessful){
-                    //val data = response.body()?.data
-
-                    Toast.makeText(this@SignInActivity, "${response.body()?.data?.email}님 반갑습니다.", Toast.LENGTH_SHORT).show()
+                    shortToast("${response.body()?.data?.email}님 반갑습니다.")
                     startActivity(Intent(this@SignInActivity, MainActivity::class.java))
                 }else{
-                    Toast.makeText(this@SignInActivity, "로그인에 실패하였습니다.", Toast.LENGTH_SHORT).show()
-
+                    shortToast("로그인에 실패하였습니다.")
                 }
             }
 
@@ -85,7 +83,7 @@ class SignInActivity : AppCompatActivity() {
 
     private fun isAutoLogin(){
         if(SoptSharedPreference.getAutoLogin(this)){
-            Toast.makeText(this, "자동 로그인 완료", Toast.LENGTH_SHORT).show()
+            shortToast("자동로그인 완료")
             startActivity(Intent(this@SignInActivity, MainActivity::class.java))
             finish()
         }
