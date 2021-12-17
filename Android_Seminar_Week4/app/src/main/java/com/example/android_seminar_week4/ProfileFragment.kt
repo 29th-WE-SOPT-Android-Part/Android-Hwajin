@@ -1,5 +1,6 @@
 package com.example.android_seminar_week4
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -21,6 +22,7 @@ class ProfileFragment : Fragment() {
 
         initProfileImg()
         initTransactionEvent()
+        initSettingBtnListener()
 
         return binding.root
     }
@@ -52,6 +54,12 @@ class ProfileFragment : Fragment() {
                 .commit()
             binding.btnFollower.isSelected = false
             binding.btnRepository.isSelected = true
+        }
+    }
+
+    private fun initSettingBtnListener(){
+        binding.ivSetting.setOnClickListener {
+            startActivity(Intent(requireActivity(), SettingActivity::class.java))
         }
     }
 
