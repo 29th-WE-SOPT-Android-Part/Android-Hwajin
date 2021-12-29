@@ -13,7 +13,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:context=".ProfileFragment">
+        tools:context=".ui.profile.ProfileFragment">
 
         <ImageView
             android:id="@+id/iv_profile"
